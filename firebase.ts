@@ -4,7 +4,8 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBsXsTojJScsppSAJswqjmo941zw2GSWsU",
+  // Adding "as string" tells TypeScript: "Trust me, this variable exists"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY as string,
   authDomain: "marketing-web-1707b.firebaseapp.com",
   projectId: "marketing-web-1707b",
   storageBucket: "marketing-web-1707b.firebasestorage.app",
