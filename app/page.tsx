@@ -10,7 +10,7 @@ export default function Home() {
       {/* Structural background effects layout layer */}
       <HeroGlow />
 
-      {/* Persistent global interface utilities layout header */}
+      {/* Keep just the theme toggle floating up top right */}
       <header className="absolute top-0 right-0 z-50 p-6 flex justify-end items-center">
         <ThemeToggle />
       </header>
