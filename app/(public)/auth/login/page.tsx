@@ -46,39 +46,38 @@ export default function LoginPage() {
         - Light Mode: White background with a soft, clean border
         - Dark Mode: Uses your custom 'glass' style or standard dark slate background
       */}
-      <div className="glass max-w-md w-full bg-white dark:bg-[#131926] border border-zinc-200 dark:border-zinc-800 p-8 rounded-3xl flex flex-col gap-6 shadow-xl text-center">
+      <div className="glass max-w-md w-full bg-[var(--card-bg)] border border-[var(--border)] p-8 rounded-3xl flex flex-col gap-6 shadow-xl text-center">
         
         {/* Header Segment */}
         <div>
-          <h2 className="text-2xl font-black mb-2 text-zinc-900 dark:text-white">
+          <h2 className="text-2xl font-black mb-2 text-[var(--foreground)]">
             System Verification
           </h2>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="text-sm text-[var(--text-muted)]">
             Accessing Marketing Ops Secure Node
           </p>
         </div>
 
         {/* Informative description text */}
-        <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed px-2">
+        <p className="text-xs text-[var(--text-muted)] leading-relaxed px-2">
           Click below to log in with Google. If your profile name matches authorized parameters, you will unlock full write permissions. Otherwise, you will automatically transition into a secure Guest view.
         </p>
 
         {/* Error messaging block */}
         {error && (
-          <p className="text-xs text-red-600 dark:text-red-400 font-medium bg-red-500/10 py-2 px-3 rounded-xl border border-red-200 dark:border-red-900/50">
+          <p className="text-xs text-[var(--destructive)] font-medium bg-[var(--destructive-bg)] py-2 px-3 rounded-xl border border-[var(--destructive-border)]">
             {error}
           </p>
         )}
 
         {/* Main Google Login Button:
-          Using your global primary brand color (#525CEB) so it pops perfectly 
-          on both light and dark screen versions!
+         
         */}
         <button 
           onClick={handleGoogleLogin}
           disabled={isLoading}
           type="button" 
-          className="w-full bg-[#525CEB] hover:bg-[#434cc2] text-white font-semibold py-4 rounded-xl transition-all cursor-pointer shadow-lg shadow-[#525CEB]/20 flex items-center justify-center gap-3 disabled:opacity-50 active:scale-[0.98]"
+          className="w-full bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-semibold py-4 rounded-xl transition-all cursor-pointer shadow-lg shadow-[var(--primary)]/20 flex items-center justify-center gap-3 disabled:opacity-50 active:scale-[0.98]"
         >
           {isLoading ? (
             <span>Verifying Credentials...</span>
@@ -93,7 +92,7 @@ export default function LoginPage() {
           )}
         </button>
 
-        <div className="text-[10px] tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
+        <div className="text-[10px] tracking-widest text-[var(--text-disabled)] uppercase">
           Secured by Firebase Network Protocol
         </div>
 
