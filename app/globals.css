@@ -2,24 +2,80 @@
 
 /* Light Theme Variables (Default) */
 :root {
+  /* Layout & Backgrounds */
   --background: #FFFFFF;
+  --background-variant: #F8F9FA; /* For sidebar, table rows, or subtle sections */
   --foreground: #09090B;
+  
+  /* Cards */
   --card-bg: #F4F4F5;
   --card-border: #E4E4E7;
+  
+  /* Generic Borders & Dividers */
+  --border: #E4E4E7;             /* Standard divider line / input border */
+  --border-hover: #A1A1AA;       /* Input border on hover */
+  
+  /* Brand / Primary Interactions */
   --primary: #5A62E2;
   --primary-hover: #4B52C3;
+  --primary-focus: rgba(90, 98, 226, 0.2); /* Focus ring overlay */
+  
+  /* Typography & Neutrals */
   --text-muted: #71717A;
+  --disabled: #E4E4E7;           /* Disabled background elements */
+  --text-disabled: #A1A1AA;      /* Disabled text color */
+
+  /* Status Colors */
+  --success: #16A34A;            /* Green for Approved */
+  --success-bg: #DCFCE7;         /* Subtle green background for badges/alerts */
+  --success-border: #BBF7D0;
+  
+  --destructive: #DC2626;        /* Red for Not Approved / Error */
+  --destructive-bg: #FEE2E2;     /* Subtle red background */
+  --destructive-border: #FECDD3;
+  
+  --warning: #D97706;            /* Amber for Pending / Warnings */
+  --warning-bg: #FEF3C7;
+  --warning-border: #FDE68A;
 }
 
 /* Dark Theme Variables */
 .dark {
+  /* Layout & Backgrounds */
   --background: #010103;
+  --background-variant: #0B0B0F; /* Darker variant for sidebars/tables */
   --foreground: #FFFFFF;
+  
+  /* Cards */
   --card-bg: #08080C;
   --card-border: #18181B;
+  
+  /* Generic Borders & Dividers */
+  --border: #18181B;
+  --border-hover: #27272A;
+  
+  /* Brand / Primary Interactions */
   --primary: #5A62E2;
   --primary-hover: #4B52C3;
+  --primary-focus: rgba(90, 98, 226, 0.4);
+  
+  /* Typography & Neutrals */
   --text-muted: #A1A1AA;
+  --disabled: #18181B;
+  --text-disabled: #52525B;
+
+  /* Status Colors (Adjusted for high contrast on dark screens) */
+  --success: #22C55E;         
+  --success-bg: #052E16;      
+  --success-border: #14532D;
+  
+  --destructive: #EF4444;     
+  --destructive-bg: #450A0A;  
+  --destructive-border: #7F1D1D;
+  
+  --warning: #F59E0B;         
+  --warning-bg: #451A03;
+  --warning-border: #78350F;
 }
 
 /* Base body styles using standard CSS properties */

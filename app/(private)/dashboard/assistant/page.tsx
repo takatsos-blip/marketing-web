@@ -13,22 +13,22 @@ export default function GuestAssistantPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6 sm:p-10 flex flex-col items-center">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] p-6 sm:p-10 flex flex-col items-center">
       <div className="max-w-4xl w-full flex flex-col gap-8">
         
         {/* Guest Security Notice Banner */}
-        <div className="w-full bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="w-full bg-[var(--warning-bg)] border border-[var(--warning-border)] rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h4 className="text-sm font-bold text-amber-600 dark:text-amber-400">
+            <h4 className="text-sm font-bold text-[var(--warning)]">
               ⚠️ Secure Guest Mode Active
             </h4>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+            <p className="text-xs text-[var(--text-muted)] mt-0.5">
               You are viewing a read-only node of the Event & Campaign Assistant. Action updates are restricted.
             </p>
           </div>
           <Link 
             href="/auth/login" 
-            className="text-xs font-semibold bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 px-4 py-2 rounded-xl text-center transition-colors"
+            className="text-xs font-semibold bg-[var(--background-variant)] hover:bg-[var(--card-bg)] border border-[var(--border)] px-4 py-2 rounded-xl text-center transition-colors"
           >
             Switch Account
           </Link>
@@ -36,13 +36,13 @@ export default function GuestAssistantPage() {
 
         {/* Dashboard Title Header */}
         <div className="flex flex-col gap-1">
-          <span className="text-xs font-bold text-[#525CEB] tracking-wider uppercase">
+          <span className="text-xs font-bold text-[var(--primary)] tracking-wider uppercase">
             CAMPAIGN PLANNING
           </span>
           <h1 className="text-3xl font-black tracking-tight">
             Event & Campaign Assistant
           </h1>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="text-sm text-[var(--text-muted)]">
             An AI-powered checklist partner tracking marketing details across nodes.
           </p>
         </div>
@@ -51,27 +51,27 @@ export default function GuestAssistantPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           {/* Main Task List Node */}
-          <div className="glass md:col-span-2 bg-white dark:bg-[#131926] border border-zinc-200 dark:border-zinc-800 p-6 rounded-3xl flex flex-col gap-4 shadow-sm">
+          <div className="glass md:col-span-2 bg-[var(--card-bg)] border border-[var(--card-border)] p-6 rounded-3xl flex flex-col gap-4 shadow-sm">
             <h3 className="text-lg font-bold">Active Planning Matrix</h3>
             
             <div className="flex flex-col gap-3 mt-2">
               {sampleTasks.map((item) => (
                 <div 
                   key={item.id} 
-                  className="flex items-center justify-between p-4 rounded-xl bg-zinc-50 dark:bg-zinc-950/40 border border-zinc-100 dark:border-zinc-900/60"
+                  className="flex items-center justify-between p-4 rounded-xl bg-[var(--background-variant)] border border-[var(--border)]"
                 >
                   <div className="flex items-center gap-3">
                     {/* Read-Only Disabled Checkbox Icon */}
-                    <div className="w-5 h-5 rounded-md border border-zinc-300 dark:border-zinc-700 bg-zinc-200 dark:bg-zinc-900 flex items-center justify-center text-[10px] text-zinc-400">
+                    <div className="w-5 h-5 rounded-md border border-[var(--border)] bg-[var(--disabled)] flex items-center justify-center text-[10px] text-[var(--text-disabled)]">
                       🔒
                     </div>
                     <span className="text-sm font-medium opacity-80">{item.task}</span>
                   </div>
 
                   <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider ${
-                    item.status === "Completed" ? "bg-green-500/10 text-green-500" :
-                    item.status === "In Progress" ? "bg-blue-500/10 text-blue-500" :
-                    "bg-zinc-500/10 text-zinc-400"
+                    item.status === "Completed" ? "bg-[var(--success-bg)] text-[var(--success)] border border-[var(--success-border)]" :
+                    item.status === "In Progress" ? "bg-[var(--primary-focus)] text-[var(--primary)]" :
+                    "bg-[var(--disabled)] text-[var(--text-muted)]"
                   }`}>
                     {item.status}
                   </span>
@@ -81,17 +81,17 @@ export default function GuestAssistantPage() {
           </div>
 
           {/* Side Module: Restricted Actions Preview */}
-          <div className="glass bg-white dark:bg-[#131926] border border-zinc-200 dark:border-zinc-800 p-6 rounded-3xl flex flex-col gap-5 shadow-sm justify-between">
+          <div className="glass bg-[var(--card-bg)] border border-[var(--card-border)] p-6 rounded-3xl flex flex-col gap-5 shadow-sm justify-between">
             <div className="flex flex-col gap-3">
               <h3 className="text-lg font-bold">AI Companion Engine</h3>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              <p className="text-xs text-[var(--text-muted)] leading-relaxed">
                 Enter complex criteria models to generate a localized strategic roadmap.
               </p>
               
               <textarea 
                 disabled
                 placeholder="Ask AI to adjust schedules... (Locked for Guest)" 
-                className="w-full h-24 bg-zinc-100 dark:bg-zinc-950/50 border border-zinc-200 dark:border-zinc-800 rounded-xl p-3 text-xs opacity-60 resize-none cursor-not-allowed outline-none"
+                className="w-full h-24 bg-[var(--background-variant)] border border-[var(--border)] rounded-xl p-3 text-xs opacity-60 resize-none cursor-not-allowed outline-none text-[var(--foreground)] placeholder:text-[var(--text-disabled)]"
               />
             </div>
 
@@ -99,7 +99,7 @@ export default function GuestAssistantPage() {
             <button 
               disabled 
               type="button" 
-              className="w-full bg-zinc-300 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 text-xs font-semibold py-3.5 rounded-xl cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-[var(--disabled)] text-[var(--text-disabled)] text-xs font-semibold py-3.5 rounded-xl cursor-not-allowed flex items-center justify-center gap-2 border border-[var(--border)]"
             >
               <span>🔒 Engine Interlocked</span>
             </button>
