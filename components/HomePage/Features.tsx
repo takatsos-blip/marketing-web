@@ -92,14 +92,9 @@ export default function Features() {
         })}
       </div>
 
-      {/* Comparison Slider Segment Wrapper */}
-      <div className="flex flex-col gap-6 max-w-3xl mx-auto w-full text-center border-t border-[var(--card-border)] pt-12">
-        <h3 className="text-xl font-bold">Data Pipeline Transformation</h3>
-        <p className="text-sm text-[var(--text-muted)] mb-4">
-          Slide to visualize how Cognition organizes fragmented records into actionable intelligence assets.
-        </p>
-        <ComparisonSlider />
-      </div>
     </section>
   );
 }
+        
+  
+

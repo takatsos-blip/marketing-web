@@ -15,7 +15,7 @@ export function ThemeToggle() {
   if (!mounted) {
     // Elegant skeleton placeholder matching your exact dimensions while loading
     return (
-      <div className="w-[84px] h-[42px] rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 animate-pulse" />
+      <div className="w-[84px] h-[42px] rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] animate-pulse" />
     );
   }
 
@@ -29,7 +29,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2.5 rounded-xl bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 transition-colors cursor-pointer text-sm font-medium text-zinc-800 dark:text-zinc-200 flex items-center justify-center min-w-[84px]"
+      className="p-2.5 rounded-xl bg-[var(--card-bg)] hover:bg-[var(--border)] border border-[var(--card-border)] transition-colors cursor-pointer text-sm font-medium text-[var(--foreground)] flex items-center justify-center min-w-[84px]"
       aria-label="Toggle Theme"
     >
       {isDark ? "🌙 Dark" : "☀️ Light"}
