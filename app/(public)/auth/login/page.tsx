@@ -38,78 +38,93 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row bg-background">
+    <div className="min-h-screen w-full flex flex-col md:flex-row bg-[var(--background)]">
       
       {/* LEFT BRANDING PANEL */}
-      <div className="hidden md:flex md:w-1/2 bg-card border-r border-border p-12 flex-col justify-between relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none bg-gradient-to-br from-primary to-transparent" />
-        
-        <div className="flex items-center gap-2 z-10">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-black text-sm">
-            M
-          </div>
-          <span className="font-bold tracking-tight text-foreground">Marketing Ops</span>
-        </div>
-
-        <div className="max-w-md z-10">
-          <h1 className="text-4xl font-extrabold tracking-tight text-foreground mb-4 leading-tight">
-            Centralize your campaign workspace.
+      <div className="hidden md:flex md:w-[60%] bg-[var(--primary)] p-16 flex-col justify-between text-white relative">
+        {/* BRAND LOGO AREA */}
+        <div className="z-10 flex flex-col gap-3">
+          {/* EM Graphic Icon */}
+          <svg 
+            className="w-24 h-auto fill-current text-white" 
+            viewBox="0 0 110 50" 
+            xmlns="http://www.w3.org/2000/svg"
+            ></svg>
+            </div> 
+        {/* Main Header */}
+        <div className="z-10 flex items-center justify-center my-auto">
+          <h1 className="text-4xl lg:text-5xl font-normal tracking-tight text-white flex items-center gap-3">
+            Hello Chaos Coordinator! <span className="animate-bounce">👋</span>
           </h1>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            Access your templates, manage internal operational assets, and review real-time marketing performance metrics all in one place.
-          </p>
         </div>
 
-        <div className="text-xs text-muted-foreground opacity-50 z-10">
-          © {new Date().getFullYear()} Marketing Ops Platform. All rights reserved.
+        {/* Footer */}
+        <div className="text-sm opacity-60 z-10 font-light">
+          All rights reserved.
         </div>
       </div>
 
       {/* RIGHT LOGIN PANEL */}
-      <div className="flex-1 flex items-center justify-center px-6 py-12">
+      <div className="flex-1 flex items-center justify-center px-8 py-12 md:px-16 lg:px-24">
         <div className="w-full max-w-sm flex flex-col gap-8">
           
-          <div className="text-center md:text-left">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground mb-2">
-              Welcome back
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight text-[var(--foreground)] mb-8">
+              Welcome Back!
             </h2>
-            <p className="text-sm text-muted-foreground">
-              Sign in to access your dashboard workspace.
-            </p>
           </div>
 
           {error && (
-            <div className="text-xs text-destructive font-medium bg-destructive/10 py-3 px-4 rounded-xl border border-destructive/20 animate-in fade-in duration-200">
+            <div className="text-xs text-[var(--destructive)] font-medium bg-[var(--destructive-bg)] py-3 px-4 rounded-md border border-[var(--destructive-border)]">
               {error}
             </div>
           )}
 
-          <div className="flex flex-col gap-4">
+          {/* Form Inputs (Visual Match to image layout) */}
+          <div className="flex flex-col gap-6">
+            <div className="w-full border-b border-[var(--border)] pb-2">
+              <input 
+                type="email" 
+                placeholder="email@example.co.za" 
+                disabled
+                className="w-full bg-transparent text-[var(--foreground)] placeholder-[var(--text-disabled)] outline-none text-sm cursor-not-allowed font-medium"
+              />
+            </div>
+
+            <div className="w-full border-b border-[var(--border)] pb-2">
+              <input 
+                type="password" 
+                placeholder="Password" 
+                disabled
+                className="w-full bg-transparent text-[var(--text-disabled)] placeholder-[var(--text-disabled)] outline-none text-sm cursor-not-allowed"
+              />
+            </div>
+          </div>
+
+          {/* Core Action Button */}
+          <div className="flex flex-col gap-4 mt-2">
             <button 
               onClick={handleGoogleLogin}
               disabled={isLoading}
               type="button" 
-              className="w-full bg-foreground hover:bg-foreground/90 text-background font-medium py-3.5 rounded-xl transition-all cursor-pointer shadow-md flex items-center justify-center gap-3 disabled:opacity-50 active:scale-[0.99]"
+              className="w-full bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-medium py-3 rounded-md transition-all cursor-pointer flex items-center justify-center gap-3 disabled:opacity-50 active:scale-[0.99] text-sm"
             >
               {isLoading ? (
-                <span>Signing you in...</span>
+                <span>Connecting securely...</span>
               ) : (
-                <>
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M12.24 10.285V13.4h6.887C18.2 15.614 15.645 18 12.24 18c-3.86 0-7-3.14-7-7s3.14-7 7-7c1.71 0 3.275.614 4.5 1.725l2.435-2.435C17.714 1.814 15.14 1 12.24 1c-5.52 0-10 4.48-10 10s4.48 10 10 10c5.77 0 9.61-4.06 9.61-9.79 0-.66-.06-1.29-.175-1.925H12.24z"/>
-                  </svg>
-                  <span>Continue with Google</span>
-                </>
+                <span>Login Now with Google Account</span>
               )}
             </button>
           </div>
 
-          <p className="text-xs text-center md:text-left text-muted-foreground leading-relaxed">
-            Authorized administrators will unlock full editing controls automatically. Guest accounts will receive secure, read-only viewing access.
-          </p>
+          {/* Helper Option */}
+          <div className="text-center text-sm text-[var(--text-muted)]">
+            Forgot password <span className="underline text-[var(--foreground)] font-medium cursor-pointer">Click here</span>
+          </div>
 
-          <div className="block md:hidden text-center text-[10px] tracking-wide text-muted-foreground/50 mt-4">
-            © {new Date().getFullYear()} Marketing Ops. All rights reserved.
+          {/* Mobile View Copyight backup */}
+          <div className="block md:hidden text-center text-xs text-[var(--text-disabled)] mt-8">
+          All rights reserved.
           </div>
 
         </div>

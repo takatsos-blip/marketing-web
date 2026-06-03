@@ -30,7 +30,7 @@ export default function AdminDashboardPage() {
             M
           </div>
           <span className="font-semibold tracking-tight text-sm bg-gradient-to-r from-[var(--foreground)] to-[var(--text-muted)] bg-clip-text text-transparent">
-            Marketing Ops Workspace
+            Marketing Operation Hub
           </span>
         </div>
         
@@ -39,7 +39,7 @@ export default function AdminDashboardPage() {
           href="/"
           className="text-xs font-medium text-[var(--text-muted)] hover:text-[var(--foreground)] border border-[var(--border)] px-3.5 py-1.5 rounded-lg bg-[var(--card-bg)]/60 hover:bg-[var(--background-variant)] transition-all duration-200 backdrop-blur-sm shadow-sm hover:shadow"
         >
-          Return to Website
+          Return to Homepage
         </Link>
       </header>
 
@@ -51,7 +51,7 @@ export default function AdminDashboardPage() {
             Admin Dashboard
           </h1>
           <p className="text-sm text-[var(--text-muted)] font-normal max-w-2xl leading-relaxed">
-            Welcome back. Review operational timelines, coordinate parameters, or manage internal modules.
+            Welcome back. 
           </p>
         </div>
 
