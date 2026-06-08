@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+// Import our new component (adjust the path if your folder structure is different)
+import GuestSecurityBanner from "@/components/GuestSecurityBanner"; 
 
 export default function GuestAssistantPage() {
-  // Sample read-only checklist items to show how the Campaign Assistant functions
   const sampleTasks = [
     { id: 1, task: "Define multi-channel campaign objectives", status: "Completed" },
     { id: 2, task: "Generate AI social copy variants (Twitter/LinkedIn)", status: "Completed" },
@@ -16,23 +16,8 @@ export default function GuestAssistantPage() {
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] p-6 sm:p-10 flex flex-col items-center">
       <div className="max-w-4xl w-full flex flex-col gap-8">
         
-        {/* Guest Security Notice Banner */}
-        <div className="w-full bg-[var(--warning-bg)] border border-[var(--warning-border)] rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h4 className="text-sm font-bold text-[var(--warning)]">
-              ⚠️ Secure Guest Mode Active
-            </h4>
-            <p className="text-xs text-[var(--text-muted)] mt-0.5">
-              You are viewing a read-only node of the Event & Campaign Assistant. Action updates are restricted.
-            </p>
-          </div>
-          <Link 
-            href="/auth/login" 
-            className="text-xs font-semibold bg-[var(--background-variant)] hover:bg-[var(--card-bg)] border border-[var(--border)] px-4 py-2 rounded-xl text-center transition-colors"
-          >
-            Switch Account
-          </Link>
-        </div>
+        {/* Clean & Modularized Banner */}
+        <GuestSecurityBanner />
 
         {/* Dashboard Title Header */}
         <div className="flex flex-col gap-1">
@@ -61,7 +46,6 @@ export default function GuestAssistantPage() {
                   className="flex items-center justify-between p-4 rounded-xl bg-[var(--background-variant)] border border-[var(--border)]"
                 >
                   <div className="flex items-center gap-3">
-                    {/* Read-Only Disabled Checkbox Icon */}
                     <div className="w-5 h-5 rounded-md border border-[var(--border)] bg-[var(--disabled)] flex items-center justify-center text-[10px] text-[var(--text-disabled)]">
                       🔒
                     </div>
@@ -95,7 +79,6 @@ export default function GuestAssistantPage() {
               />
             </div>
 
-            {/* Locked Submit Action Indicator */}
             <button 
               disabled 
               type="button" 

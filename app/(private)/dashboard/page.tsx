@@ -35,7 +35,7 @@ export default function AdminDashboardPage() {
         </div>
         
         {/* STABILIZED: Shifted text-muted-foreground and hover states to design system parameters */}
-        <Link 
+        <Link
           href="/"
           className="text-xs font-medium text-[var(--text-muted)] hover:text-[var(--foreground)] border border-[var(--border)] px-3.5 py-1.5 rounded-lg bg-[var(--card-bg)]/60 hover:bg-[var(--background-variant)] transition-all duration-200 backdrop-blur-sm shadow-sm hover:shadow"
         >
@@ -51,7 +51,7 @@ export default function AdminDashboardPage() {
             Admin Dashboard
           </h1>
           <p className="text-sm text-[var(--text-muted)] font-normal max-w-2xl leading-relaxed">
-            Welcome back. 
+            Welcome back.
           </p>
         </div>
 
@@ -69,9 +69,9 @@ export default function AdminDashboardPage() {
               <h3 className="text-base font-semibold text-[var(--foreground)] tracking-tight mb-1">Trainings</h3>
               <p className="text-xs text-[var(--text-muted)] leading-relaxed">Launch a new education course or dynamic workshop.</p>
             </div>
-            <Link 
-              href="/dashboard/create-training" 
-             
+            <Link
+              href="/dashboard/create-training"
+              
               className="w-full md:w-auto text-center text-xs font-medium bg-[var(--primary)] text-white px-5 py-2.5 rounded-xl hover:bg-[var(--primary-hover)] focus:ring-4 focus:ring-[var(--primary-focus)] transition-all duration-200 shadow-sm tracking-wide group-hover:translate-x-0.5"
             >
               Create Training
@@ -87,8 +87,8 @@ export default function AdminDashboardPage() {
               <h3 className="text-base font-semibold text-[var(--foreground)] tracking-tight mb-1">Events</h3>
               <p className="text-xs text-[var(--text-muted)] leading-relaxed">Schedule a new community summit or conference.</p>
             </div>
-            <Link 
-              href="/dashboard/create-event" 
+            <Link
+              href="/dashboard/create-event"
               className="w-full md:w-auto text-center text-xs font-medium bg-[var(--primary)] text-white px-5 py-2.5 rounded-xl hover:bg-[var(--primary-hover)] focus:ring-4 focus:ring-[var(--primary-focus)] transition-all duration-200 shadow-sm tracking-wide group-hover:translate-x-0.5"
             >
               Create Event
@@ -101,8 +101,8 @@ export default function AdminDashboardPage() {
         <div className="border border-[var(--border)] rounded-2xl bg-[var(--card-bg)]/60 backdrop-blur-sm overflow-hidden shadow-sm">
           <div className="px-6 py-4.5 border-b border-[var(--border)] bg-[var(--background-variant)] flex justify-between items-center">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] flex items-center gap-2">
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--warning)] animate-pulse" /> 
-              Upcoming Deadlines 
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--warning)] animate-pulse" />
+              Upcoming Deadlines
               <span className="text-[11px] font-normal normal-case opacity-60 ml-1">(Next 14 Days)</span>
             </h3>
           </div>
@@ -127,8 +127,8 @@ export default function AdminDashboardPage() {
                   <div key={item.id} className="flex justify-between items-center py-4 text-xs first:pt-0 last:pb-0 hover:bg-[var(--background-variant)] px-2 -mx-2 rounded-lg transition-colors duration-150">
                     <div className="flex items-center gap-3 min-w-0">
                       <span className={`px-2 py-0.5 rounded-md text-[10px] font-medium uppercase tracking-wider border shrink-0 ${
-                        item.type === 'Training' 
-                          ? 'bg-[var(--primary-focus)] text-[var(--primary)] border-[var(--primary-focus)]' 
+                        item.type === 'Training'
+                          ? 'bg-[var(--primary-focus)] text-[var(--primary)] border-[var(--primary-focus)]'
                           : 'bg-[var(--card-bg)] text-[var(--foreground)] border-[var(--border)]'
                       }`}>
                         {item.type}

@@ -4,13 +4,13 @@ import type { NextRequest } from "next/server";
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  
+ 
   // Read the secure role cookie we set during the login phase
   const userRole = request.cookies.get("user-role")?.value;
 
   // 1. GUEST ACCESS CHECK: Run security logic if user is hitting a dashboard route
   if (pathname.startsWith("/dashboard")) {
-    
+   
     // Gatekeeper: If they aren't logged in at all, kick them back to the login page
     if (!userRole) {
       return NextResponse.redirect(new URL("/auth/login", request.url));
@@ -25,7 +25,7 @@ export function proxy(request: NextRequest) {
   }
 
   // 2. REVERSE GATEKEEPER (Remember Logged In Users):
-  // If they already have a valid user-role cookie but try to access the login page manually, 
+  // If they already have a valid user-role cookie but try to access the login page manually,
   // skip the login screen entirely and fast-track them straight into the dashboard!
   if (pathname.startsWith("/auth/login") && userRole) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
