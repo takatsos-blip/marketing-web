@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { db } from "@/firebase";
 import { collection, addDoc } from "firebase/firestore";
+import ApprovalButtonGroup from "@/components/ApprovalButtonGroup";
 
 export default function CreateEventPage() {
   const router = useRouter();
@@ -19,6 +20,11 @@ export default function CreateEventPage() {
   const [venueExpanded, setVenueExpanded] = useState(false);
   const [dateExpanded, setDateExpanded] = useState(false);
   const [transportExpanded, setTransportExpanded] = useState(false);
+
+  // Card approval status
+  const [venueApproved, setVenueApproved] = useState(false);
+  const [dateApproved, setDateApproved] = useState(false);
+  const [transportApproved, setTransportApproved] = useState(false);
 
   // Attached tracking text
   const [venueFileName, setVenueFileName] = useState<string | null>(null);
@@ -78,6 +84,11 @@ export default function CreateEventPage() {
         comment,
         internalStaff: parseInt(internalStaff) || 0,
         externalGuests: parseInt(externalGuests) || 0,
+        approvals: {
+          venue: venueApproved,
+          dateConfig: dateApproved,
+          transport: transportApproved
+        },
         attachments: {
           venue: venueFileName,
           dateConfig: dateFileName,
@@ -101,7 +112,7 @@ export default function CreateEventPage() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] p-4 sm:p-6 md:p-12 font-sans selection:bg-[var(--destructive)]/30 w-full overflow-x-hidden transition-colors duration-200">
       
-      {/* Hidden background system entrypoints for file picking */}
+       {/* Hidden background system entrypoints for file picking */}
       <input type="file" ref={venueFileRef} className="hidden" onChange={handleVenueFile} />
       <input type="file" ref={dateFileRef} className="hidden" onChange={handleDateFile} />
       <input type="file" ref={transportFileRef} className="hidden" onChange={handleTransportFile} />
@@ -148,7 +159,7 @@ export default function CreateEventPage() {
               <div className="mb-4 p-3 rounded-xl bg-[var(--background-variant)] border border-[var(--border)] space-y-2">
                 <button 
                   type="button"
-                  onClick={() => dateFileRef.current?.click()}
+                  onClick={() => venueFileRef.current?.click()}
                   className={`w-full text-center border border-dashed border-[var(--border)] hover:border-[var(--border-hover)] text-[11px] font-bold tracking-wider uppercase py-2.5 rounded-lg text-[var(--text-muted)] transition-colors block truncate px-2`}
                 >
                   {venueFileName ? `📎 ${venueFileName}` : "📁 LINK PO DOCUMENT"}
@@ -156,25 +167,14 @@ export default function CreateEventPage() {
               </div>
             )}
 
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-              <button type="button" className="bg-[var(--destructive-bg)] border border-[var(--destructive-border)] text-[var(--destructive)] font-bold text-[9px] tracking-wider uppercase px-2.5 py-2 rounded-lg shrink-0">
-                NOT APPROVED
-              </button>
-              <button 
-                type="button" 
-                onClick={() => handleSendReminder("Venue Portfolio")}
-                className="bg-[var(--background)] border border-[var(--border)] text-[var(--text-muted)] font-bold text-[9px] tracking-wider uppercase px-2.5 py-2 rounded-lg hover:text-[var(--foreground)] transition-colors shrink-0 shadow-sm"
-              >
-                SEND REMINDER
-              </button>
-              <button 
-                type="button"
-                onClick={() => setVenueExpanded(!venueExpanded)}
-                className="text-[9px] text-[var(--text-muted)] font-bold hover:text-[var(--foreground)] transition-colors ml-auto uppercase tracking-wider"
-              >
-                {venueExpanded ? "- HIDE" : "+ DETAILS"}
-              </button>
-            </div>
+            <ApprovalButtonGroup 
+              sectionName="Venue Portfolio"
+              isExpanded={venueExpanded}
+              isApproved={venueApproved}
+              onToggleExpand={() => setVenueExpanded(!venueExpanded)}
+              onToggleApproval={() => setVenueApproved(!venueApproved)}
+              onSendReminder={handleSendReminder}
+            />
           </div>
 
           {/* DATE OF EVENT CARD */}
@@ -207,25 +207,14 @@ export default function CreateEventPage() {
               </div>
             )}
 
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-              <button type="button" className="bg-[var(--destructive-bg)] border border-[var(--destructive-border)] text-[var(--destructive)] font-bold text-[9px] tracking-wider uppercase px-2.5 py-2 rounded-lg shrink-0">
-                NOT APPROVED
-              </button>
-              <button 
-                type="button"
-                onClick={() => handleSendReminder("Event Date Window")}
-                className="bg-[var(--background)] border border-[var(--border)] text-[var(--text-muted)] font-bold text-[9px] tracking-wider uppercase px-2.5 py-2 rounded-lg hover:text-[var(--foreground)] transition-colors shrink-0 shadow-sm"
-              >
-                SEND REMINDER
-              </button>
-              <button 
-                type="button"
-                onClick={() => setDateExpanded(!dateExpanded)}
-                className="text-[9px] text-[var(--text-muted)] font-bold hover:text-[var(--foreground)] transition-colors ml-auto uppercase tracking-wider"
-              >
-                {dateExpanded ? "- HIDE" : "+ DETAILS"}
-              </button>
-            </div>
+            <ApprovalButtonGroup 
+              sectionName="Event Date Window"
+              isExpanded={dateExpanded}
+              isApproved={dateApproved}
+              onToggleExpand={() => setDateExpanded(!dateExpanded)}
+              onToggleApproval={() => setDateApproved(!dateApproved)}
+              onSendReminder={handleSendReminder}
+            />
           </div>
 
           {/* TRANSPORT CARD */}
@@ -250,24 +239,15 @@ export default function CreateEventPage() {
               </div>
             )}
 
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-6">
-              <button type="button" className="bg-[var(--destructive-bg)] border border-[var(--destructive-border)] text-[var(--destructive)] font-bold text-[9px] tracking-wider uppercase px-2.5 py-2 rounded-lg shrink-0">
-                NOT APPROVED
-              </button>
-              <button 
-                type="button"
-                onClick={() => handleSendReminder("Transport Deployment Logistics")}
-                className="bg-[var(--background)] border border-[var(--border)] text-[var(--text-muted)] font-bold text-[9px] tracking-wider uppercase px-2.5 py-2 rounded-lg hover:text-[var(--foreground)] transition-colors shrink-0 shadow-sm"
-              >
-                SEND REMINDER
-              </button>
-              <button 
-                type="button"
-                onClick={() => setTransportExpanded(!transportExpanded)}
-                className="text-[9px] text-[var(--text-muted)] font-bold hover:text-[var(--foreground)] transition-colors ml-auto uppercase tracking-wider"
-              >
-                {transportExpanded ? "- HIDE" : "+ DETAILS"}
-              </button>
+            <div className="mt-6">
+              <ApprovalButtonGroup 
+                sectionName="Transport Deployment Logistics"
+                isExpanded={transportExpanded}
+                isApproved={transportApproved}
+                onToggleExpand={() => setTransportExpanded(!transportExpanded)}
+                onToggleApproval={() => setTransportApproved(!transportApproved)}
+                onSendReminder={handleSendReminder}
+              />
             </div>
           </div>
         </div>
@@ -338,7 +318,7 @@ export default function CreateEventPage() {
           <div className="space-y-6 w-full">
             <div className="flex justify-between items-center text-[var(--text-muted)] text-[11px] font-black uppercase tracking-widest">
               <span>👥 HEADCOUNT</span>
-              <span className="bg-[var(--background-variant)] text-[var(--text-muted)] border border-[var(--border)] text-[10px] font-bold px-3 py-1 rounded-full">
+              <span className="bg-[var(--background-variant)] text-[var(--text-muted)] border border(--border)] text-[10px] font-bold px-3 py-1 rounded-full">
                 Total: {totalHeadcount}
               </span>
             </div>
