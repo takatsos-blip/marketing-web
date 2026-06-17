@@ -1,6 +1,6 @@
 import React from "react";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
-import DashboardCard from "@/components/dashboard/DashBoardCard"; // Double check your lowercase/uppercase 'b' here!
+import DashboardCard from "@/components/dashboard/DashBoardCard"; 
 import ScheduleBanner from "@/components/dashboard/ScheduleBanner";
 
 const DASHBOARD_ITEMS = [
@@ -10,7 +10,7 @@ const DASHBOARD_ITEMS = [
     description: "Launch a new education course or dynamic workshop.",
     actions: [
       { label: "Create Training", href: "/dashboard/create-training" },
-      { label: "View Trainings", href: "/dashboard/trainings" },
+      { label: "View Trainings", href: "/trainings" }, // ✅ Updated to public route
     ],
   },
   {
@@ -19,7 +19,7 @@ const DASHBOARD_ITEMS = [
     description: "Schedule a new community summit or conference.",
     actions: [
       { label: "Create Event", href: "/dashboard/create-event" },
-      { label: "View Events", href: "/dashboard/events" },
+      { label: "View Events", href: "/events" }, // ✅ Updated to public route
     ],
   },
 ];
@@ -48,7 +48,7 @@ export default function AdminDashboardPage() {
             <DashboardCard
               key={item.title}
               icon={item.icon}
-             title={item.title}
+              title={item.title}
               description={item.description}
               actions={item.actions}
             />

@@ -19,7 +19,7 @@ export default function ScheduleBanner() {
           
           <div className="w-full sm:w-auto shrink-0">
             <Link
-              href="/dashboard/schedules"
+              href="/master-schedule" // ✅ Updated to your public directory path!
               className="inline-block w-full sm:w-auto text-center text-xs font-semibold bg-[var(--primary)] text-white px-6 py-3 rounded-xl hover:bg-[var(--primary-hover)] focus:ring-4 focus:ring-[var(--primary-focus)] transition-all duration-200 shadow-sm tracking-wide whitespace-nowrap"
             >
               View All Trainings & Events
