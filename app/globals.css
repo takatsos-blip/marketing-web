@@ -83,3 +83,48 @@ body {
   background-color: var(--background);
   color: var(--foreground);
 }
+/* Custom Energy Mesh Utilities */
+/* THE CORRECT WAY (Tailwind v3 Compatible) */
+@layer utilities {
+  .bg-energy-mesh {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 1200px;
+    pointer-events: none;
+    z-index: 0;
+    overflow: visible;
+
+    /* Replicating the multi-stop gradient from your SVG linearGradient */
+    background: linear-gradient(
+      135deg,
+      #ef4444 0%,   /* Red */
+      #f97316 15%,  /* Orange */
+      #eab308 30%,  /* Yellow */
+      #22c55e 48%,  /* Green */
+      #3b82f6 68%,  /* Blue */
+      #6366f1 85%,  /* Indigo */
+      #a855f7 100%  /* Purple */
+    );
+
+    /* Mimics the feGaussianBlur stdDeviation="40" */
+    filter: blur(80px);
+
+    /* Default Light Mode: mix-blend-multiply & opacity-70 */
+    mix-blend-mode: multiply;
+    opacity: 0.70;
+
+    /* Masking styles to transition the mesh smoothly out into transparency */
+    mask-image: radial-gradient(circle at 50% 30%, black 30%, transparent 85%);
+    -webkit-mask-image: radial-gradient(circle at 50% 30%, black 30%, transparent 85%);
+  }
+}
+
+/* Adjustments for theme switching (.dark mode class configuration) */
+.dark .bg-energy-mesh {
+  /* Dark Mode: mix-blend-lighten & lower opacity matching your original path configs */
+  mix-blend-mode: lighten;
+  opacity: 0.45;
+}
