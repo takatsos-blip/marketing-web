@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { db } from "@/firebase";
 import { collection, addDoc } from "firebase/firestore";
+import { uploadTrainingToDriveAction } from "../../../actions/actions";
 
 export default function CreateTrainingPage() {
   const router = useRouter();
@@ -47,8 +48,8 @@ export default function CreateTrainingPage() {
     e.preventDefault();
     try {
       setLoading(true);
-      
-      await addDoc(collection(db, "trainings"), {
+      // 1. Construct the configuration data payload
+      const payload = {
         venue,
         timeWindow: { start: startTime, end: endTime },
         foodLogistics: {
@@ -66,10 +67,22 @@ export default function CreateTrainingPage() {
           externalGuests: Number(externalGuests)
         },
         createdAt: new Date().toISOString(),
+      };
+
+      // 2. Save to Firebase Firestore
+      await addDoc(collection(db, "trainings"), payload);
+
+      // 3. Backup safely to Google Drive via the Server Action Bridge
+      await uploadTrainingToDriveAction({
+        title: venue || "unnamed-venue",
+        type: "training",
+      date: new Date().toISOString().split('T')[0], // Sets clean YYYY-MM-DD format
+        description: `Training session at ${venue || "Unknown Venue"}. Attendance: ${internalStaff} staff, ${externalGuests} guests.`,
+        ...payload
       });
 
-      alert("Training logistics configured successfully!");
-      router.push("/dashboard"); 
+      alert("Training logistics configured and synchronized to Google Drive successfully!");
+      router.push("/dashboard");
     } catch (error) {
       console.error("Error creating training layout configuration:", error);
       alert("Something went wrong saving the metrics data.");

@@ -11,10 +11,12 @@
   "dependencies": {
     "@teispace/next-themes": "^2.0.1",
     "firebase": "^12.13.0",
+    "googleapis": "^173.0.0",
     "next": "16.2.6",
     "next-themes": "^0.4.6",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
